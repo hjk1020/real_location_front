@@ -13,7 +13,7 @@ import 'app_apth.dart';
 
 class ApiHelperAuth {
   ApiHelperAuth._() {
-    _init(); //initiallze offline cache
+    _init(); 
   }
   final storage = new FlutterSecureStorage();
 
@@ -47,15 +47,12 @@ class ApiHelperAuth {
         .add(InterceptorsWrapper(onRequest: (options, handler) async {
       final accessToken = await storage.read(key: 'accessToken');
       print(storage.read(key: 'accessToken'));
-      // if (accessToken) {
-      //   Get.offAll(() => const LoginMain(), binding: LoginBinding());
-      // }
+    
 
       options.headers['Authorization'] = 'Bearer $accessToken';
       return handler.next(options);
     }, onError: (error, handler) async {
       if (error.response?.statusCode == 401) {
-        // 기기에 저장된 AccessToken과 RefreshToken 로드
         final accessToken = await storage.read(key: 'accessToken');
         final refreshToken = await storage.read(key: 'refreshToken');
 
