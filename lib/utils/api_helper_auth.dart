@@ -32,7 +32,6 @@ class ApiHelperAuth {
     policy: CachePolicy.refreshForceCache,
     hitCacheOnErrorExcept: [],
     maxStale: const Duration(minutes: 30),
-    //increase number of days for loger cache
     priority: CachePriority.high,
   );
 
